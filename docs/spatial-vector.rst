@@ -4,6 +4,38 @@ Earthpy Spatial Vector Data
 The ``earthpy`` spatial module provides functions that wrap around the ``rasterio``
 and ``geopandas`` to work with raster and vector data in Python.
 
+Clip Points
+-----------
+
+The ``clip_point`` function takes a shapefile to clip to another shapefile. 
+
+``clip_point`` takes 2 input parameters:
+
+``shp``: **geopandas dataframe**
+    Dataset to be clipped.
+
+``clip_obj``: **geopandas dataframe**
+    Vector layer (point, line, polygon) to be clipped to clip_obj.
+        
+The ``clip_point`` function returns the following:
+
+Points clipped to vector boundary.
+
+Example:
+
+.. code-block:: python
+
+  import geopandas as gpd
+  import clip_data as cl
+
+  # Import shapefile using geopandas
+  point_path = gpd.read_file("point_path_filename.shp")
+
+  # Import clip object using geopandas
+  boundary_path = gpd.read_file("boundary_path_filename.shp")
+  
+  point_clip = cl.clip_shp(point_path, boundary_path)
+
 Clip Vector Data
 ~~~~~~~~~~~~~~~~
 
@@ -15,9 +47,9 @@ All inputs must be in the same Coordinate Refenence System (CRS).
 
 ``clip_shp`` takes 2 input parameters:
 
-``shp``: geopandas GeoDataframe you wish to clip
+``shp``: geopandas GeoDataframe you wish to clip.
 
-``clip_obj``: geopandas GeoDataframe with the point or bounds you wish to clip to
+``clip_obj``: geopandas GeoDataframe with the point or bounds you wish to clip to.
 
 The output of ``clip_shp`` is a geopandas GeoDataframe clipped to the clip object.
 
